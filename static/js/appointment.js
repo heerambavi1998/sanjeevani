@@ -81,7 +81,7 @@ swal({
 
         for(i=0;i<response.length;i++){
         response[i].pat_fullname=response[i].pat_first_name+" "+response[i].pat_last_name
-        response[i].doc_fullname=response[i].doc_first_name+" "+response[i].doc_last_name
+        response[i].doc_fullname=response[i].doc_first_name
         }
 
 
@@ -95,17 +95,20 @@ swal({
                    "aaSorting": [],
                 aoColumns: [
                     {
-                        mData: 'doc_fullname'
+                        mData: 'pat_id'
                     },
                     {
-                        mData: 'pat_fullname'
+                        mData: 'doc_id'
                     },
                     {
-                        mData: 'appointment_date'
+                        mData: 'doc_first_name'
+                    },
+                    {
+                        mData: 'pat_first_name'
                     },
                     {
                         mRender: function (o) {
-                            return '<button class="btn-xs btn btn-danger delete-btn" type="button">Delete</button>';
+                            return '<button class="btn-xs btn btn-green delete-btn" type="button">DONE</button>';
                         }
                     }
         ]
@@ -174,7 +177,7 @@ var doctorSelect=""
 
         for(i=0;i<response.length;i++){
 
-        response[i].doc_fullname=response[i].doc_first_name+" "+response[i].doc_last_name
+        response[i].doc_fullname=response[i].doc_first_name
         doctorSelect +="<option value="+response[i].doc_id+">"+response[i].doc_fullname+"</option>"
         }
 
@@ -197,7 +200,7 @@ var patientSelect=""
         $.ajax(settings).done(function (response) {
          for(i=0;i<response.length;i++){
           response[i].pat_fullname=response[i].pat_first_name+" "+response[i].pat_last_name
-        patientSelect +="<option value="+response[i].pat_id+">"+response[i].pat_fullname+"</option>"
+        patientSelect +="<option value="+response[i].pat_id+">"+response[i].pat_id+"</option>"
         }
 
                 })

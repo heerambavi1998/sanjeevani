@@ -15,6 +15,7 @@ $.ajax(settings).done(function (response) {
   $('#patientcount').text(response.patient)
   $('#doctorcount').text(response.doctor)
   $('#appointmentcount').text(response.appointment)
+  $('#tokencount').text(response.patient)
 });
 
 

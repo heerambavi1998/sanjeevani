@@ -112,30 +112,23 @@ swal({
                  "aaSorting": [],
                 aoColumns: [
                     {
+                        mData: 'pat_id'
+                    },
+                    {
                         mData: 'pat_first_name'
                     },
                     {
                         mData: 'pat_last_name'
                     },
                     {
-                        mData: 'pat_insurance_no'
-                    },
-                    {
-                        mData: 'pat_address'
-                    },
-                    {
-                        mData: 'pat_ph_no'
+                        mData: 'pat_gender'
                     },
                     {
                         mRender: function (o) {
-                            return '<button class="btn-xs btn btn-info btn-edit" type="button">Edit</button>';
-                        }
-                    },
-                    {
-                        mRender: function (o) {
-                            return '<button class="btn-xs btn btn-danger delete-btn" type="button">Delete</button>';
+                            return '<button class="btn-xs btn btn-info btn-edit" type="button">Add information</button>';
                         }
                     }
+
         ]
             });
             $('#datatable4 tbody').on('click', '.delete-btn', function () {
@@ -144,7 +137,7 @@ swal({
                 deletePatient(data.pat_id)
 
             });
-            $('.btn-edit').one("click", function(e) {
+            $('.btn-edit').on("click", function(e) {
                 var data = table.row($(this).parents('tr')).data();
                 $('#myModal').modal().one('shown.bs.modal', function (e) {
                     for (var key in data) {
@@ -186,6 +179,7 @@ console.log('innn')
                     if(instance.isValid()){
                 jsondata = $('#detailform').serializeJSON();
                 addPatient(jsondata)
+                getPatient()
                 }
 
             })

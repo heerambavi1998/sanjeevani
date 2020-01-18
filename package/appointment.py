@@ -12,7 +12,7 @@ class Appointments(Resource):
     def get(self):
         """Retrive all the appointment and return in form of json"""
 
-        appointment = conn.execute("SELECT p.*,d.*,a.* from appointment a LEFT JOIN patient p ON a.pat_id = p.pat_id LEFT JOIN doctor d ON a.doc_id = d.doc_id ORDER BY appointment_date DESC").fetchall()
+        appointment = conn.execute("SELECT p.*,d.*,a.* from appointment a LEFT JOIN patient p ON a.pat_id = p.pat_id LEFT JOIN doctor d ON a.doc_id = d.doc_id ORDER BY pat_id DESC").fetchall()
         return appointment
 
     def post(self):
@@ -21,9 +21,9 @@ class Appointments(Resource):
         appointment = request.get_json(force=True)
         pat_id = appointment['pat_id']
         doc_id = appointment['doc_id']
-        appointment_date = appointment['appointment_date']
-        appointment['app_id'] = conn.execute('''INSERT INTO appointment(pat_id,doc_id,appointment_date)
-            VALUES(?,?,?)''', (pat_id, doc_id,appointment_date)).lastrowid
+
+        appointment['app_id'] = conn.execute('''INSERT INTO appointment(pat_id,doc_id)
+            VALUES(?,?)''', (pat_id, doc_id)).lastrowid
         conn.commit()
         return appointment
 

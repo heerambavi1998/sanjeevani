@@ -6,7 +6,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
    <meta name="description" content="Bootstrap Admin App + jQuery">
    <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin">
-   <title>HospitalManagementSystem</title>
+   <title>Sanjeevani</title>
    <!-- =============== VENDOR STYLES ===============-->
    <!-- FONT AWESOME-->
    <link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
@@ -34,16 +34,14 @@
       <!-- top navbar-->
       <header class="topnavbar-wrapper">
          <!-- START Top Navbar-->
-         <nav role="navigation" class="navbar topnavbar">
+         <nav role="navigation" class="navbar topnavbar" style="padding-top: 20px; padding-bottom: 20px">
             <!-- START navbar header-->
             <div class="navbar-header">
-               <a href="#/" class="navbar-brand">
-                  <div class="brand-logo">
-                     HospitalManagementSystem
+               <a href="/" class="navbar-brand">
+                  <div class="brand-logo" style="font-size: 60px; padding-left: 30px">
+                     SANJEEVANI
                   </div>
-                  <div class="brand-logo-collapsed">
-                     <img src="img/logo-single.png" alt="App Logo" class="img-responsive">
-                  </div>
+
                </a>
             </div>
             <!-- END navbar header-->
@@ -81,49 +79,65 @@
             </div>
             <div class="row">
              <div class="row">
-               <div class="col-lg-4 col-md-6">
+                <div class="col-lg-6 col-md-6">
+                  <!-- START widget-->
+                  <a href="token.html">
+                  <div class="panel widget bg-success">
+                     <div class="row row-table">
+                        <div class="col-xs-4 text-center bg-primary-dark pv-lg">
+                           <em class="icon-star fa-3x"></em>
+                        </div>
+                        <div class="col-xs-8 pv-lg">
+                           <div class="h1 m0 text-bold" id="tokencount"></div>
+                           <div class="text-uppercase">Tokens</div>
+                        </div>
+                     </div>
+                  </div>
+                     </a>
+               </div>
+               <div class="col-lg-6 col-md-6">
                   <!-- START widget-->
                   <a href="patient.html">
                   <div class="panel widget bg-success">
                      <div class="row row-table">
-                        <div class="col-xs-4 text-center bg-success-dark pv-lg">
-                           <em class="icon-share fa-3x"></em>
+                        <div class="col-xs-4 text-center bg-primary-dark pv-lg">
+                           <em class="icon-star fa-3x"></em>
                         </div>
                         <div class="col-xs-8 pv-lg">
-                           <div class="h1 m0 text-bold" id="patientcount"></div>
-                           <div class="text-uppercase">Patient</div>
+                           <div class="h1 m0 text-bold"> All</div>
+                           <div class="text-uppercase">General Physicians</div>
                         </div>
                      </div>
                   </div>
                      </a>
                </div>
-               <div class="col-lg-4 col-md-6">
+               <div class="col-lg-6 col-md-6">
                   <a href="doctor.html">
                   <!-- START widget-->
-                  <div class="panel widget bg-danger">
+                  <div class="panel widget bg-success">
                      <div class="row row-table">
-                        <div class="col-xs-4 text-center bg-danger-dark pv-lg">
+                        <div class="col-xs-4 text-center bg-primary-dark pv-lg">
                            <em class="icon-star fa-3x"></em>
                         </div>
                         <div class="col-xs-8 pv-lg">
                            <div class="h1 m0 text-bold" id="doctorcount"></div>
-                           <div class="text-uppercase">Doctor</div>
+                           <div class="text-uppercase">Doctors</div>
                         </div>
                      </div>
                   </div>
                      </a>
                </div>
-                  <div class="col-lg-4 col-md-6">
+                  <div class="col-lg-6 col-md-6">
                   <a href="appointment.html">
                   <!-- START widget-->
-                  <div class="panel widget bg-primary">
+                  <div class="panel widget bg-success">
                      <div class="row row-table">
                         <div class="col-xs-4 text-center bg-primary-dark pv-lg">
                            <em class="icon-star fa-3x"></em>
                         </div>
                         <div class="col-xs-8 pv-lg">
                            <div class="h1 m0 text-bold" id="appointmentcount"></div>
-                           <div class="text-uppercase">Appointment</div>
+                           <div class="text-uppercase">Appointments</div>
                         </div>
                      </div>
                   </div>
@@ -135,9 +149,7 @@
          </div>
       </section>
       <!-- Page footer-->
-      <footer>
-         <span>&copy; 2016 - Angle</span>
-      </footer>
+
    </div>
    <!-- =============== VENDOR SCRIPTS ===============-->
    <!-- MODERNIZR-->

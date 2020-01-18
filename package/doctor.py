@@ -19,11 +19,9 @@ class Doctors(Resource):
 
         doctorInput = request.get_json(force=True)
         doc_first_name=doctorInput['doc_first_name']
-        doc_last_name = doctorInput['doc_last_name']
-        doc_ph_no = doctorInput['doc_ph_no']
-        doc_address = doctorInput['doc_address']
-        doctorInput['doc_id']=conn.execute('''INSERT INTO doctor(doc_first_name,doc_last_name,doc_ph_no,doc_address)
-            VALUES(?,?,?,?)''', (doc_first_name, doc_last_name,doc_ph_no,doc_address)).lastrowid
+        doc_no = doctorInput['doc_no']
+        doctorInput['doc_id']=conn.execute('''INSERT INTO doctor(doc_first_name,doc_no)
+            VALUES(?,?)''', (doc_first_name,doc_no)).lastrowid
         conn.commit()
         return doctorInput
 
@@ -49,11 +47,9 @@ class Doctor(Resource):
 
         doctorInput = request.get_json(force=True)
         doc_first_name=doctorInput['doc_first_name']
-        doc_last_name = doctorInput['doc_last_name']
-        doc_ph_no = doctorInput['doc_ph_no']
-        doc_address = doctorInput['doc_address']
+
         conn.execute(
-            "UPDATE doctor SET doc_first_name=?,doc_last_name=?,doc_ph_no=?,doc_address=? WHERE doc_id=?",
-            (doc_first_name, doc_last_name, doc_ph_no, doc_address, id))
+            "UPDATE doctor SET doc_first_name=?,doc_no=? WHERE doc_id=?",
+            (doc_first_name,doc_no,id))
         conn.commit()
         return doctorInput

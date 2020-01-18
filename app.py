@@ -3,6 +3,7 @@
 
 from flask import Flask,send_from_directory,render_template
 from flask_restful import Resource, Api
+from package.token import Token, Tokens
 from package.patient import Patients, Patient
 from package.doctor import Doctors, Doctor
 from package.appointment import Appointments, Appointment
@@ -18,6 +19,8 @@ api = Api(app)
 
 api.add_resource(Patients, '/patient')
 api.add_resource(Patient, '/patient/<int:id>')
+api.add_resource(Tokens, '/token')
+api.add_resource(Token, '/token/<int:id>')
 api.add_resource(Doctors, '/doctor')
 api.add_resource(Doctor, '/doctor/<int:id>')
 api.add_resource(Appointments, '/appointment')

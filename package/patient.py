@@ -22,13 +22,12 @@ class Patients(Resource):
         """api to add the patient in the database"""
 
         patientInput = request.get_json(force=True)
+        print(patientInput)
         pat_first_name=patientInput['pat_first_name']
         pat_last_name = patientInput['pat_last_name']
-        pat_insurance_no = patientInput['pat_insurance_no']
-        pat_ph_no = patientInput['pat_ph_no']
-        pat_address = patientInput['pat_address']
-        patientInput['pat_id']=conn.execute('''INSERT INTO patient(pat_first_name,pat_last_name,pat_insurance_no,pat_ph_no,pat_address)
-            VALUES(?,?,?,?,?)''', (pat_first_name, pat_last_name, pat_insurance_no,pat_ph_no,pat_address)).lastrowid
+
+        patientInput['pat_id']=conn.execute('''INSERT INTO patient(pat_first_name,pat_last_name)
+            VALUES(?,?)''', (pat_first_name, pat_last_name)).lastrowid
         conn.commit()
         return patientInput
 
@@ -52,12 +51,23 @@ class Patient(Resource):
         """api to update the patient by it id"""
 
         patientInput = request.get_json(force=True)
+        print(patientInput)
         pat_first_name = patientInput['pat_first_name']
         pat_last_name = patientInput['pat_last_name']
-        pat_insurance_no = patientInput['pat_insurance_no']
-        pat_ph_no = patientInput['pat_ph_no']
-        pat_address = patientInput['pat_address']
-        conn.execute("UPDATE patient SET pat_first_name=?,pat_last_name=?,pat_insurance_no=?,pat_ph_no=?,pat_address=? WHERE pat_id=?",
-                     (pat_first_name, pat_last_name, pat_insurance_no,pat_ph_no,pat_address,id))
+        l = []
+        for i in range(1,7):
+            if str(i) in patientInput:
+                l.append('1')
+            else:
+                l.append('0')
+
+        conn.execute("UPDATE patient SET pat_first_name=?,pat_last_name=?,pat_eye=?,pat_gynaec=?,pat_dent=?,pat_skin=?,\
+                     pat_ortho=?,pat_ent=? WHERE pat_id=?",
+                     (pat_first_name, pat_last_name,l,id))
+
+
+
+        appointment['app_id'] = conn.execute('''INSERT INTO appointment(pat_id,doc_id)
+                    VALUES(?,?)''', (pat_id, doc_id)).lastrowid
         conn.commit()
         return patientInput

@@ -2,13 +2,12 @@ $(document).ready(function () {
 
     var table
 
-
-    function addDoctor(data) {
+    function addToken(data) {
 
         var settings = {
             "async": true,
             "crossDomain": true,
-            "url": "doctor",
+            "url": "token",
             "method": "POST",
             "headers": {
                 "content-type": "application/json",
@@ -21,19 +20,19 @@ $(document).ready(function () {
 
         $.ajax(settings).done(function (response) {
             $('.modal.in').modal('hide')
-               $.notify("Doctor Added Successfully", {"status":"success"});
+            $.notify("Patient Added Successfully", {"status":"success"});
             table.destroy();
             $('#datatable4 tbody').empty(); // empty in case the columns change
-            getDoctor()
+            getToken()
         });
 
     }
 
-    function deleteDoctor(id) {
+    function deleteToken(id) {
         var settings = {
             "async": true,
             "crossDomain": true,
-            "url": "doctor/" + id,
+            "url": "token/" + id,
             "method": "DELETE",
             "headers": {
                 "cache-control": "no-cache",
@@ -41,32 +40,30 @@ $(document).ready(function () {
             }
         }
 
-        swal({
-            title: "Are you sure?",
-            text: "You will not be able to recover this data",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Yes, delete it!",
-            closeOnConfirm: false
-        }, function () {
+    swal({
+        title: "Are you sure?",
+        text: "You will not be able to recover this data",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, delete it!",
+        closeOnConfirm: false
+        }, function() {
             $.ajax(settings).done(function (response) {
-                swal("Deleted!", "Doctor has been deleted.", "success");
+            swal("Deleted!", "Patient has been deleted.", "success");
                 table.destroy();
                 $('#datatable4 tbody').empty(); // empty in case the columns change
-                getDoctor()
+                getToken()
             });
-
-
-        });
+    });
 
     }
 
-    function updateDoctor(data, id) {
+    function updateToken(data, id) {
         var settings = {
             "async": true,
             "crossDomain": true,
-            "url": "doctor/" + id,
+            "url": "token/" + id,
             "method": "PUT",
             "headers": {
                 "content-type": "application/json",
@@ -77,22 +74,22 @@ $(document).ready(function () {
         }
 
         $.ajax(settings).done(function (response) {
-            $.notify("Doctor Updated Successfully", {"status":"success"});
             $('.modal.in').modal('hide')
+            $.notify("Patient Updated Successfully", {"status":"success"});
             table.destroy();
             $('#datatable4 tbody').empty(); // empty in case the columns change
-            getDoctor()
+            getToken()
         });
 
 
     }
 
-    function getDoctor() {
+    function getToken() {
 
         var settings = {
             "async": true,
             "crossDomain": true,
-            "url": "doctor",
+            "url": "token",
             "method": "GET",
             "headers": {
                 "cache-control": "no-cache"
@@ -109,15 +106,32 @@ $(document).ready(function () {
                 'ordering': true, // Column ordering
                 'info': true, // Bottom left status text
                 aaData: response,
-                  "aaSorting": [],
+                 "aaSorting": [],
                 aoColumns: [
                     {
-                        mData: 'doc_id'
+                        mData: 'pat_id'
                     },
                     {
-                        mData: 'doc_first_name'
+                        mData: 'pat_first_name'
                     },
-
+                    {
+                        mData: 'pat_last_name'
+                    },
+                    {
+                        mData: 'pat_city'
+                    },
+                    {
+                        mData: 'pat_gender'
+                    },
+                    {
+                        mData: 'pat_occupation'
+                    },
+                    {
+                        mData: 'pat_market'
+                    },
+                    {
+                        mData: 'pat_gp'
+                    },
                     {
                         mRender: function (o) {
                             return '<button class="btn-xs btn btn-info btn-edit" type="button">Edit</button>';
@@ -133,22 +147,22 @@ $(document).ready(function () {
             $('#datatable4 tbody').on('click', '.delete-btn', function () {
                 var data = table.row($(this).parents('tr')).data();
                 console.log(data)
-                deleteDoctor(data.doc_id)
+                deleteToken(data.pat_id)
 
             });
-            $('.btn-edit').one("click", function (e) {
+            $('.btn-edit').on("click", function(e) {
                 var data = table.row($(this).parents('tr')).data();
                 $('#myModal').modal().one('shown.bs.modal', function (e) {
                     for (var key in data) {
                         $("[name=" + key + "]").val(data[key])
                     }
-                    $("#savethepatient").off("click").on("click", function (e) {
-                        var instance = $('#detailform').parsley();
-                        instance.validate()
-                        console.log(instance.isValid())
-                        if (instance.isValid()) {
-                            jsondata = $('#detailform').serializeJSON();
-                            updateDoctor(jsondata, data.doc_id)
+                    $("#savethetoken").off("click").on("click", function(e) {
+                    var instance = $('#detailform').parsley();
+                    instance.validate()
+                    console.log(instance.isValid())
+                    if(instance.isValid()){
+                        jsondata = $('#detailform').serializeJSON();
+                        updateToken(jsondata, data.pat_id)
                         }
 
                     })
@@ -166,28 +180,26 @@ $(document).ready(function () {
 
 
 
-    $("#addpatient").click(function () {
+    $("#addtoken").click(function () {
+        $('#detailform input,textarea').val("")
+                $('#myModal').modal().one('shown.bs.modal', function (e) {
 
-        $('#myModal').modal().one('shown.bs.modal', function (e) {
+                    console.log('innn')
+                    $("#savethetoken").off("click").on("click", function(e) {
+                            console.log("inn")
+                            var instance = $('#detailform').parsley();
+                            instance.validate()
+                            if(instance.isValid()){
+                                jsondata = $('#detailform').serializeJSON();
+                                addToken(jsondata)
+                                getToken()
+                            }
 
+                    })
 
-            $("#savethepatient").off("click").on("click", function (e) {
-                console.log("inn")
-                var instance = $('#detailform').parsley();
-                instance.validate()
-                if (instance.isValid()) {
-                    jsondata = $('#detailform').serializeJSON();
-                    addDoctor(jsondata)
-                }
+                })
 
             })
 
-        })
-
-
-
-    })
-
-
-    getDoctor()
+    getToken()
 })

@@ -6,7 +6,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
    <meta name="description" content="Bootstrap Admin App + jQuery">
    <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin">
-   <title>HospitalManagementSystem</title>
+   <title>SANJEEVANI</title>
    <!-- =============== VENDOR STYLES ===============-->
    <!-- FONT AWESOME-->
    <link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
@@ -33,16 +33,14 @@
       <!-- top navbar-->
       <header class="topnavbar-wrapper">
          <!-- START Top Navbar-->
-         <nav role="navigation" class="navbar topnavbar">
+         <nav role="navigation" class="navbar topnavbar" style="padding-top: 20px; padding-bottom: 20px">
             <!-- START navbar header-->
             <div class="navbar-header">
                <a href="/" class="navbar-brand">
-                  <div class="brand-logo">
-                     HospitalManagementSystem
+                  <div class="brand-logo" style="font-size: 60px; padding-left: 30px">
+                     SANJEEVANI
                   </div>
-                  <div class="brand-logo-collapsed">
-                     <img src="img/logo-single.png" alt="App Logo" class="img-responsive">
-                  </div>
+
                </a>
             </div>
             <!-- END navbar header-->
@@ -92,13 +90,14 @@
                            <table id="datatable4" class="table table-striped">
                               <thead>
                                  <tr>
-                                    <th style="width:20%">First Name</th>
+
+                                    <th style="width:20%">TOKEN</th>
+                                    <th style="width:25%">First Name</th>
                                     <th style="width:25%">Last Name</th>
-                                    <th style="width:25%">Insurance</th>
-                                    <th style="width:15%">Adress</th>
-                                    <th style="width:15%">Phone Number</th>
+                                     <th style="width:25%">Sex</th>
+
                                       <th style="width:15%"></th>
-                                      <th style="width:15%"></th>
+
                                  </tr>
                               </thead>
                               <tbody></tbody>
@@ -110,9 +109,7 @@
          </div>
       </section>
       <!-- Page footer-->
-      <footer>
-         <span>&copy; 2016 - Angle</span>
-      </footer>
+
    </div>
 
     <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="modal fade">
@@ -138,23 +135,37 @@
                                  <input required type="text" name="pat_last_name" class="form-control" placeholder="Last name">
                               </div>
                            </div>
-                   <div class="form-group">
-                              <label class="col-lg-2 control-label">Insurance No</label>
+                           <div class="form-group">
+                               <label class="col-lg-2 control-label">Checkups required</label>
                               <div class="col-lg-10">
-                                 <input required type="text" name="pat_insurance_no"  class="form-control" placeholder="Insurance No">
+                                 <div class="form-check">
+                                      <input name="1" class="form-check-input" type="checkbox" id="eye" value="1">
+                                      <label class="form-check-label" for="eye">Eye</label>
+                                    </div>
+                                  <div class="form-check">
+                                      <input name="6" class="form-check-input" type="checkbox" id="gynaec" value="6">
+                                      <label class="form-check-label" for="gynaec">Gynaecologist</label>
+                                    </div>
+                                  <div class="form-check">
+                                      <input name="2" class="form-check-input" type="checkbox" id="dental" value="2">
+                                      <label class="form-check-label" for="dental">Dental</label>
+                                    </div>
+                                  <div class="form-check">
+                                      <input name="3" class="form-check-input" type="checkbox" id="skin" value="3">
+                                      <label class="form-check-label" for="skin">Skin</label>
+                                    </div>
+                                  <div class="form-check">
+                                      <input name="4" class="form-check-input" type="checkbox" id="ortho" value="4">
+                                      <label class="form-check-label" for="ortho">Orthopaedic</label>
+                                    </div>
+                                  <div class="form-check">
+                                      <input name="5" class="form-check-input" type="checkbox" id="ent" value="5">
+                                      <label class="form-check-label" for="ent">ENT</label>
+                                    </div>
+
+
                               </div>
-                           </div>
-                   <div class="form-group">
-                              <label class="col-lg-2 control-label">Phone Number</label>
-                              <div class="col-lg-10">
-                                 <input required name="pat_ph_no" type="text" class="form-control" placeholder="Phone Number">
-                              </div>
-                           </div>
-                   <div class="form-group">
-                              <label class="col-lg-2 control-label">Address</label>
-                              <div class="col-lg-10">
-                                 <textarea required name="pat_address" class="form-control" placeholder="Address"></textarea>
-                              </div>
+
                            </div>
 
                         </form>

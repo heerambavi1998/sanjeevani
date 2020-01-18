@@ -6,7 +6,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
    <meta name="description" content="Bootstrap Admin App + jQuery">
    <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin">
-   <title>SANJEEVANI</title>
+   <title>Sanjeevani</title>
    <!-- =============== VENDOR STYLES ===============-->
    <!-- FONT AWESOME-->
    <link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
@@ -71,13 +71,13 @@
          <div class="content-wrapper">
             <div class="content-heading">
                <!-- START Language list-->
-
+                GENERATE TOKEN
                <!-- END Language list    -->
-               Doctor
+
                <small data-localize="dashboard.WELCOME"></small>
                 <div class="pull-right">
                   <div class="btn-group">
-                     <button  style="bottom: 27px;" id="addpatient" class="mb-sm btn btn-primary" type="button">Add Doctor</button>
+                     <button  style="bottom: 27px;" id="addtoken" class="mb-sm btn btn-primary" type="button">New Token</button>
 
                   </div>
                </div>
@@ -90,8 +90,14 @@
                            <table id="datatable4" class="table table-striped">
                               <thead>
                                  <tr>
-                                     <th style="width:20%">Doctor ID</th>
-                                    <th style="width:20%">Doctor</th>
+                                     <th style="width:10%">TOKEN</th>
+                                    <th style="width:10%">First Name</th>
+                                    <th style="width:10%">Last Name</th>
+                                    <th style="width:10%">Occupation</th>
+                                    <th style="width:10%">Gender</th>
+                                    <th style="width:10%">City/Town</th>
+                                    <th style="width:10%">Source of Information</th>
+                                    <th style="width:10%">General Physician</th>
                                       <th style="width:15%"></th>
                                       <th style="width:15%"></th>
                                  </tr>
@@ -105,7 +111,6 @@
          </div>
       </section>
       <!-- Page footer-->
-
    </div>
 
     <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="modal fade">
@@ -115,23 +120,74 @@
                <button type="button" data-dismiss="modal" aria-label="Close" class="close">
                   <span aria-hidden="true">&times;</span>
                </button>
-               <h4 id="myModalLabel" class="modal-title">Doctor</h4>
+               <h4 id="myModalLabel" class="modal-title">Patient Details</h4>
             </div>
             <div class="modal-body">
                <form data-parsley-validate="" novalidate="" class="form-horizontal" id="detailform">
                            <div class="form-group">
-                              <label class="col-lg-2 control-label">Doctor ID number</label>
+                              <label class="col-lg-2 control-label">First Name</label>
                               <div class="col-lg-10">
-                                 <input required type="text" name="doc_no" class="form-control" placeholder="number">
+                                 <input required type="text" name="pat_first_name" class="form-control" placeholder="First Name">
                               </div>
                            </div>
-                            <div class="form-group">
-                              <label class="col-lg-2 control-label">Doctor type</label>
+                           <div class="form-group">
+                              <label class="col-lg-2 control-label">Last name</label>
                               <div class="col-lg-10">
-                                 <input required type="text" name="doc_first_name" class="form-control" placeholder="type">
+                                 <input required type="text" name="pat_last_name" class="form-control" placeholder="Last name">
                               </div>
                            </div>
+                           <div class="form-group">
+                               <label class="col-lg-2 control-label">Gender</label>
+                              <div class="col-lg-10">
+                                 <select class="form-control" id="FormControlSelect1" name="pat_gender">
+                                 <option>Male</option>
+                                 <option>Female</option>
+                                 <option>Other</option>
+                               </select>
+                              </div>
 
+                           </div>
+                           <div class="form-group">
+                              <label class="col-lg-2 control-label">Age</label>
+                              <div class="col-lg-10">
+                                 <input required type="text" name="pat_age" class="form-control" placeholder="Gender">
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <label class="col-lg-2 control-label">Occupation</label>
+                              <div class="col-lg-10">
+                                 <input required type="text" name="pat_occupation" class="form-control" placeholder="Occupation">
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <label class="col-lg-2 control-label">City/Town</label>
+                              <div class="col-lg-10">
+                                 <input required type="text" name="pat_city" class="form-control" placeholder="City/Town">
+                              </div>
+                           </div>
+                           <div class="form-group">
+                               <label class="col-lg-2 control-label">Source of Information</label>
+                              <div class="col-lg-10">
+                                 <select class="form-control" name="pat_market" id="FormControlSelect2">
+                                 <option>Saw a pamphlet</option>
+                                 <option>Word of Mouth</option>
+                                 <option>Through Marketing</option>
+                                 <option>Other way</option>
+                               </select>
+                              </div>
+
+                           </div>
+                           <div class="form-group">
+                               <label class="col-lg-2 control-label">General Physician</label>
+                              <div class="col-lg-10">
+                                 <select class="form-control" name="pat_gp" id="FormControlSelect3">
+                                 <option>Male GP</option>
+                                 <option>Female GP</option>
+                                 <option>Children GP</option>
+                               </select>
+                              </div>
+
+                           </div>
 
                         </form>
 
@@ -140,7 +196,7 @@
             </div>
             <div class="modal-footer">
                <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
-               <button id="savethepatient" type="button" class="btn btn-primary">Save changes</button>
+               <button id="savethetoken" type="button" class="btn btn-primary">Save changes</button>
             </div>
          </div>
       </div>
@@ -169,7 +225,7 @@
    <!-- =============== PAGE VENDOR SCRIPTS ===============-->
    <!-- =============== APP SCRIPTS ===============-->
    <script src="app/js/app.js"></script>
-<script src="js/doctor.js"></script>
+<script src="js/token.js"></script>
 </body>
 
 </html>
