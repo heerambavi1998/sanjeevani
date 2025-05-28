@@ -1,14 +1,15 @@
-# Sanjeevani Hospital Management System
+# Sanjeevani - Health Camp Management
 
-A comprehensive hospital management system built with Flask RESTful API backend and a web frontend.
+Sanjeevani is the IIT GN organised free medical health camp for rural communities around the campus. 
+This is the app used in the 2018 camp for registrations and token-based queuing. 
+
+Built with Flask RESTful API backend and a web frontend, and some love.
 
 ## Features
 
 - Patient Management
 - Doctor Management
-- Appointment Scheduling
 - Token Generation System
-- User-friendly Interface
 
 ## Tech Stack
 
